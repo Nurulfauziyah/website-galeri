@@ -65,6 +65,14 @@ nav {
   font-weight: 500;
   color: #b80000;
 }
+.menu .logout {
+  font-weight: 500;
+  color: #b80000;
+  cursor: pointer;
+  font-size: 17px;
+  text-decoration: none;
+  background-color: #fff;
+}
 
 .menu a::after {
   content: "";
@@ -200,9 +208,7 @@ h2 {
   margin-bottom: 5px;
   cursor: pointer;
 }
-.card-title:hover {
-  color: #b9201f;
-}
+
 .card-body p {
   font-size: 11px;
   margin-bottom: 0px;
@@ -214,9 +220,9 @@ h2 {
 }
 /* footer */
 footer {
-  background-color: #ffdfd3;
+  background-color: #d6395e;
   text-align: center;
-  padding: 1rem 0 3rem;
+  padding: 1rem 0 2rem;
   margin-top: 3rem;
 }
 
@@ -225,7 +231,7 @@ footer .social {
 }
 
 footer .social a {
-  color: #d6395e;
+  color: #ffdfd3;
   margin: 1rem;
 }
 
@@ -234,17 +240,17 @@ footer .links a:hover {
   color: #010101;
 }
 footer .links {
-  margin-bottom: 1rem;
-  color: #d6395e;
+  margin-bottom: 0.5rem;
+  color: #e9edc9;
 }
 
 footer .credit {
   font-size: 1rem;
-  color: #010101;
+  color: #ffdfd3;
 }
 
 footer .credit a {
-  color: #b9201f;
+  color: #eede4d;
   font-weight: 700;
 }
 
@@ -292,124 +298,75 @@ footer .credit a {
     padding: 0.3rem;
   }
 }
-/* Tabel gallery */
-/* @foreach ($gallerys as $key => $gallery)
-                            <tr>
-                                <td>{{  $key + 1}}</td>
-                                <td>{{ $gallery->user->name }}</td>
-                                <td>{{ $gallery->nama }}</td>
-                                <td><img width="100" height="100" src="{{ Storage::url($gallery->gambar) }}" alt=""></td>
-                                <td>{{ $gallery->created_at->format('d/m/Y') }}</td>
-                                <td><a class="btn btn-success" href="{{ route('edit',$gallery->id) }}">Edit </a> 
-                                     <a class="btn btn-danger" href="{{ route('hapus-gallery',$gallery->id) }}">Delete</a> 
-                                </td>          
-                            </tr>
-                            @endforeach */
-/* {!! $gallerys->withQueryString()->links('pagination::bootstrap-5') !!} */
-
-/* Login Controller */
-/* public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-
-    public function login(Request $request)
-    {
-        
-        
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-          
-            return redirect()->intended('admin/udahlogin');
-        }
-       
-        return redirect()->back()->withInput($request->only('email'))->withErrors([
-            'email' => 'Email atau Password salah',
-        ]);
-    }
-
-    public function logout()
-{
-    Auth::logout();
-    return redirect('/login');
+/* Gaya untuk tombol edit */
+.btn-edit {
+  background-color: #1a9b1a; /* Warna latar belakang */
+  color: #fff; /* Warna teks */
+  border: none; /* Hilangkan border */
+  padding: 0.375rem 0.75rem; /* Padding */
+  border-radius: 0.25rem; /* Radius sudut */
+  cursor: pointer; /* Ubah kursor saat diarahkan */
 }
 
-public function register(){
-    return view('auth.register');
+.btn-edit:hover {
+  background-color: #e9edc9; /* Warna latar belakang saat dihover */
+  color: #d6395e;
 }
-public function registerproses(Request $request){
-    $request->validate([
-        'nama' => 'required',
-        'email' => 'required|unique:users,email',
-        'password' => 'required|min:6'
-    ]);
 
-    $data['name'] = $request->nama;
-    $data['email'] = $request->email;
-    $data['password'] = Hash::make($request->password);
-
-    User::create($data);
-
-    $login = $request->only('email', 'password');
-
-        if (Auth::attempt($login)) {
-            // Jika autentikasi berhasil, arahkan pengguna ke halaman dashboard
-            return redirect()->intended('/login');
-        }
-        // Jika autentikasi gagal, kembali ke halaman login dengan pesan kesalahan
-        return redirect()->back()->withInput($request->only('email'))->withErrors([
-            'email' => 'Email atau Password salah',
-        ]);
+/* Gaya untuk tombol hapus */
+.btn-delete {
+  background-color: #dc3545; /* Warna latar belakang */
+  color: #fff; /* Warna teks */
+  border: none; /* Hilangkan border */
+  padding: 0.375rem 0.75rem; /* Padding */
+  border-radius: 0.25rem; /* Radius sudut */
+  cursor: pointer; /* Ubah kursor saat diarahkan */
 }
-protected $redirectTo = '/login';
 
-} */
+.btn-delete:hover {
+  background-color: #e9edc9; /* Warna latar belakang saat dihover */
+  color: #d6395e;
+}
 
-/* Route */
-/* Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function (){
-    route::get('/tambahgallery',[layout::class,'tambahgallery'])->name('tambahgallery');
-    route::get('/udahlogin',[layout::class,'udahlogin'])->name('udahlogin');
-    route::get('/tabelgallery',[layout::class,'tabelgallery'])->name('tabelgallery');
-}); */
+.my-container {
+  width: 320px;
+  height: 400px;
+  margin: 100px auto;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-/* $gallerys = Gallery::all();
-        return view('user.index', compact('gallerys')); */
+form {
+  display: flex;
+  flex-direction: column;
+}
 
-/* $data = new Gallery();
-        $data ->user_id= Auth::id();
-        $data ->nama=$request->nama;
-        $data ->gambar=$request->file('gambar')->store('public/gallery');
-        $data ->save();
+.form-group {
+  margin-bottom: 15px;
+}
 
-        return redirect()->back(); */
+label {
+  font-weight: bold;
+}
 
-/* update */
-/* $request->validate([
-        'gallery' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+input[type="text"],
+input[type="password"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
 
-    // Cari produk yang ingin diedit
-    $data = Gallery::find($id);
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
 
-    $data ->user_id= Auth::id();
-    $data ->nama=$request->nama;
-    if ($request->hasFile('gambar')) {
-        Storage::delete($data->gambar); 
-        $data->gambar = $request->file('gallery')->store('public/gallery');
-    }
-        $data ->save();
-
-        return redirect()->route('tabelgallery');
-    } */
-
-/* edit */
-/* $data = Gallery::find($id);
-        return view('admin.editgallery', compact('data')); */
-
-/* $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); */
-
-/* public function index(){
-    $gallerys = Gallery::latest()->paginate(8);
-    return view('user.index', compact('gallerys'));
-} */
+button:hover {
+  background-color: #0056b3;
+}
